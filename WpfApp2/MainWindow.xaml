@@ -4,9 +4,51 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="WPF小畫家v0.1" Height="450" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Height="30">
+            <MenuItem Header="檔案" Height="30" VerticalAlignment="Center" FontSize="16">
+                <MenuItem Header="開啟新畫布" VerticalAlignment="Center" FontSize="16"/>
+                <MenuItem Header="儲存畫布" VerticalAlignment="Center" FontSize="16"/>
+            </MenuItem>
+        </Menu>
 
-    </Grid>
+        <ToolBarTray Height="40" Background="LightCyan" DockPanel.Dock="Top">
+            <ToolBar Height="38" Width="660" Background="#FF96F3F3">
+                <Label Content="筆刷色彩" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,0,0,0"/>
+                <xctk:ColorPicker x:Name="StrokeColorPicker" Width="100" Height="30" DisplayColorAndName="True"/>
+
+                <Label Content="填滿色彩" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,0,0,0"/>
+                <xctk:ColorPicker x:Name="FillColorPicker" Width="100" Height="30" DisplayColorAndName="True"/>
+
+                <Slider x:Name="ThicknessSlider" Width="120" Minimum="1" Maximum="10" IsSnapToTickEnabled="True" VerticalAlignment="Center"/>
+                <Label FontSize="14" FontWeight="Bold" Margin="30,0,0,0" Content="{Binding Value, ElementName=ThicknessSlider}"/>
+            </ToolBar>
+
+            <ToolBar Height="38" Width="600" Background="#FFA8D684">
+                <RadioButton Width="38" Height="38" Content="Line" FontSize="14" Checked="shapebotton_checked" FontWeight="Bold" Tag="Line"/>
+                <RadioButton Width="38" Height="38" Content="Rectangle" FontSize="14" Checked="shapebotton_checked" FontWeight="Bold" Tag="Rectangle"/>
+                <RadioButton Width="38" Height="38" Content="Ellipse" FontSize="14" Checked="shapebotton_checked" FontWeight="Bold" Tag="Ellipse"/>
+                <RadioButton Width="38" Height="38" Content="Freeline" FontSize="14" Checked="shapebotton_checked" FontWeight="Bold" Tag="Freeline"/>
+            </ToolBar>
+        </ToolBarTray>
+
+        <StatusBar Height="35" Background="LightGray" DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <Label x:Name="StatusLabel" Content="Ready" VerticalAlignment="Center" FontSize="14" Width="150"/>
+            </StatusBarItem>
+            <Separator />
+            <StatusBarItem>
+                <Label x:Name="ShapeLabel" Content="形狀" VerticalAlignment="Center" FontSize="14" Width="150"/>
+            </StatusBarItem>
+            <Separator />
+            <StatusBarItem>
+                <Label x:Name="ColorLabel" Content="色彩" VerticalAlignment="Center" FontSize="14" Width="150"/>
+            </StatusBarItem>
+        </StatusBar>
+
+        <Canvas Background="#FFF5F5E7"/>
+    </DockPanel>
 </Window>
